@@ -6,7 +6,7 @@ create database link site_link
  using '(DESCRIPTION =
        (ADDRESS_LIST =
           (ADDRESS = (PROTOCOL = TCP)
-          (HOST = 192.168.179.225)
+          (HOST = 192.168.179.232)
           (PORT = 1521))
        )
        (CONNECT_DATA =
