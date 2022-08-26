@@ -84,7 +84,7 @@ begin
 end;
 /
 
-
+commit;
 
 
 
