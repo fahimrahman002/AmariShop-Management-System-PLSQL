@@ -1,1 +1,0 @@
-select * from Product@site_link;
