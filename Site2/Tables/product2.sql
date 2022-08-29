@@ -32,7 +32,20 @@ BEGIN
   SELECT product2_seq.NEXTVAL
   INTO   :new.ProductID
   FROM   dual;
+ END;
+/
+CREATE OR REPLACE TRIGGER Product2Trigger_after_update
+AFTER update
+ON Product2
+BEGIN
+   DBMS_OUTPUT.PUT_LINE('VALUES updated INTO Product2 TABLE');
 END;
 /
-
+CREATE OR REPLACE TRIGGER Product2Trigger_after_delete
+AFTER Delete
+ON Product2
+BEGIN
+   DBMS_OUTPUT.PUT_LINE('VALUES deleted from Product2 TABLE');
+END;
+/
 commit;

@@ -35,5 +35,18 @@ BEGIN
   FROM   dual;
 END;
 /
-
+CREATE OR REPLACE TRIGGER Product1Trigger_after_update
+AFTER update
+ON Product1
+BEGIN
+   DBMS_OUTPUT.PUT_LINE('VALUES updates INTO Product1 TABLE');
+END;
+/
+CREATE OR REPLACE TRIGGER Product1Trigger_after_delete
+AFTER Delete
+ON Product1
+BEGIN
+   DBMS_OUTPUT.PUT_LINE('VALUES deleted from Product1 TABLE');
+END;
+/
 commit;
