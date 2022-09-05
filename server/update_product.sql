@@ -19,11 +19,11 @@ PROCEDURE getBranchID_by_pname(p_name in Product.product_name%type,BranchID out 
 
     is 
     BEGIN
-        for row in (select Product1.BranchID,Product1.ProductID from (Product1 INNER JOIN Branch ON Product1.BranchID = Branch.BranchID) where  Product1.product_name like '%'||p_name||'%') loop
+        for row in (select Product1@site1.BranchID,Product1@site1.ProductID from (Product1@site1 INNER JOIN Branch ON Product1@site1.BranchID = Branch.BranchID) where  Product1@site1.product_name like '%'||p_name||'%') loop
 		BranchID:= row.BranchID;
-		ProductID:= row.ProductID;
+		ProductID:= row.ProductID; 
 		end loop;
-		for row in (select Product2.BranchID,Product2.ProductID  from (Product2 INNER JOIN Branch ON Product2.BranchID = Branch.BranchID) where  Product2.product_name like '%'||p_name||'%') loop
+		for row in (select Product1@site2.BranchID,Product1@site2.ProductID  from (Product2@site2 INNER JOIN Branch ON Product2@site2.BranchID = Branch.BranchID) where  Product2@site2.product_name like '%'||p_name||'%') loop
 		BranchID:= row.BranchID;
 		ProductID:= row.ProductID;
 		end loop;
@@ -34,10 +34,10 @@ procedure update_ProductName(p_name in Product.product_name%type,up_name in Prod
     IS
     BEGIN
        If MOD(BranchID,2)=0 then
-			update Product2 set product_name= REPLACE(product_name,p_name,up_name) where ProductID=P_id;
+			update Product2@site2 set product_name= REPLACE(product_name,p_name,up_name) where Product2@site2.ProductID=P_id;
 			commit;
 		else 
-			update Product1 set product_name= REPLACE(product_name,p_name,up_name) where ProductID=P_id;
+			update Product1@site1 set product_name= REPLACE(product_name,p_name,up_name) where Product1@site1.ProductID=P_id;
 			commit;
 		end if;
     END update_ProductName;
@@ -45,10 +45,10 @@ procedure update_ProductDescription(p_name in Product.product_name%type,up_des i
     IS
     BEGIN
        If MOD(BranchID,2)=0 then
-			update Product2 set product_description=(up_des) where ProductID=P_id;
+			update Product2@site2 set product_description=(up_des) where Product2@site2.ProductID=P_id;
 			commit;
 		else 
-			update Product1 set product_description=(up_des) where ProductID=P_id;
+			update Product1@site1 set product_description=(up_des) where Product1@site1.ProductID=P_id;
 			commit;
 		end if;
     END update_ProductDescription;
@@ -56,10 +56,10 @@ procedure update_ProductModel(p_name in Product.product_name%type,up_model in Pr
     IS
     BEGIN
        If MOD(BranchID,2)=0 then
-			update Product2 set product_model=(up_model) where ProductID=P_id;
+			update Product2@site2 set product_model=(up_model) where Product2@site2.ProductID=P_id;
 			commit;
 		else 
-			update Product1 set product_model=(up_model) where ProductID=P_id;
+			update Product1@site1 set product_model=(up_model) where Product1@site1.ProductID=P_id;
 			commit;
 		end if;
     END update_ProductModel;
@@ -67,10 +67,10 @@ procedure update_ProductBrand(p_name in Product.product_name%type,up_brand in Pr
     IS
     BEGIN
        If MOD(BranchID,2)=0 then
-			update Product2 set product_brand=(up_brand) where ProductID=P_id;
+			update Product2@site2 set product_brand=(up_brand) where Product2@site2.ProductID=P_id;
 			commit;
 		else 
-			update Product1 set product_brand=(up_brand) where ProductID=P_id;
+			update Product1@site1 set product_brand=(up_brand) where Product1@site1.ProductID=P_id;
 			commit;
 		end if;
     END update_ProductBrand;
@@ -78,10 +78,10 @@ procedure update_Product_purchase_rate(p_name in Product.product_name%type,up_pu
     IS
     BEGIN
        If MOD(BranchID,2)=0 then
-			update Product2 set product_purchase_rate=(up_pur) where ProductID=P_id;
+			update Product2@site2 set product_purchase_rate=(up_pur) where Product2@site2.ProductID=P_id;
 			commit;
 		else 
-			update Product1 set product_purchase_rate=(up_pur) where ProductID=P_id;
+			update Product1@site1 set product_purchase_rate=(up_pur) where Product1@site1.ProductID=P_id;
 			commit;
 		end if;
     END update_Product_purchase_rate;
@@ -89,10 +89,10 @@ procedure update_Product_sales_rate(p_name in Product.product_name%type,up_sal i
     IS
     BEGIN
        If MOD(BranchID,2)=0 then
-			update Product2 set product_sales_rate=(up_sal) where ProductID=P_id;
+			update Product2@site2 set product_sales_rate=(up_sal) where Product2@site2.ProductID=P_id;
 			commit;
 		else 
-			update Product1 set product_sales_rate=(up_sal) where ProductID=P_id;
+			update Product1@site1 set product_sales_rate=(up_sal) where Product1@site1.ProductID=P_id;
 			commit;
 		end if;
     END update_Product_sales_rate;
@@ -100,10 +100,10 @@ procedure update_Product_totalQ(p_name in Product.product_name%type,up_tq in Pro
     IS
     BEGIN
        If MOD(BranchID,2)=0 then
-			update Product2 set total_quantity=(up_tq) where ProductID=P_id;
+			update Product2@site2 set total_quantity=(up_tq) where Product2@site2.ProductID=P_id;
 			commit;
 		else 
-			update Product1 set total_quantity=(up_tq) where ProductID=P_id;
+			update Product1@site1 set total_quantity=(up_tq) where Product1@site1.ProductID=P_id;
 			commit;
 		end if;
     END update_Product_totalQ;

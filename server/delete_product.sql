@@ -13,13 +13,13 @@ create or replace package body delete_product_package as
     procedure delete_product_from_site1(p_name in Product.product_name%type)
     IS
     BEGIN
-        delete from Product1  where p_name like '%'||p_name||'%';
+        delete from Product1@site1  where Product1@site1.p_name like '%'||p_name||'%';
     END delete_product_from_site1;
 
     procedure delete_product_from_site2(p_name in Product.product_name%type)
     IS
     BEGIN
-        delete from Product2 where  p_name like '%'||p_name||'%';
+        delete from Product2@site2 where  Product2@site2.p_name like '%'||p_name||'%';
     END delete_product_from_site2;
 
     function get_branch_id_by_name(b_name in Branch.branch_name%type)

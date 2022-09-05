@@ -49,4 +49,5 @@ BEGIN
    DBMS_OUTPUT.PUT_LINE('VALUES deleted from Product1 TABLE');
 END;
 /
+
 commit;
