@@ -13,7 +13,7 @@ create or replace package body insert_product_package as
     procedure insert_product_into_site1(branch_id in Branch.BranchID%type,p_name in Product.product_name%type,p_desc in Product.product_description%type,p_model in Product.product_model%type,p_brand in Product.product_brand%type,p_purchase in Product.product_purchase_rate%type,p_sales in Product.product_sales_rate%type,p_quantity in Product.total_quantity%type)
     IS
     BEGIN
-        insert into Product1(product_name,product_description,product_model,product_brand,
+        insert into Product1@site1(product_name,product_description,product_model,product_brand,
         product_purchase_rate,product_sales_rate,total_quantity,BranchID) values 
         (p_name,p_desc,p_model,p_brand,p_purchase,p_sales,p_quantity,branch_id);
 		commit;
@@ -22,7 +22,7 @@ create or replace package body insert_product_package as
     procedure insert_product_into_site2(branch_id in Branch.BranchID%type,p_name in Product.product_name%type,p_desc in Product.product_description%type,p_model in Product.product_model%type,p_brand in Product.product_brand%type,p_purchase in Product.product_purchase_rate%type,p_sales in Product.product_sales_rate%type,p_quantity in Product.total_quantity%type)
     IS
     BEGIN
-        insert into Product2(product_name,product_description,product_model,product_brand,
+        insert into Product2@site2(product_name,product_description,product_model,product_brand,
         product_purchase_rate,product_sales_rate,total_quantity,BranchID) values 
         (p_name,p_desc,p_model,p_brand,p_purchase,p_sales,p_quantity,branch_id);
 		commit;
