@@ -22,7 +22,7 @@ create or replace package body update_product_pack as
     begin 
 
         select product_name,product_description,product_model,product_brand,product_purchase_rate,product_sales_rate,total_quantity
-        into pName,pDesc,pModel,pBrand,pPurchaseRate,pSalesRate,pQuantity from Product1 WHERE ProductID = p_id; 
+        into pName,pDesc,pModel,pBrand,pPurchaseRate,pSalesRate,pQuantity from Product1@site1 WHERE ProductID = p_id; 
 
         if p_name is not NULL then
             pName:=p_name;
@@ -47,7 +47,7 @@ create or replace package body update_product_pack as
         end if;
         
 
-        UPDATE Product1
+        UPDATE Product1@site1
         SET product_name = pName, product_description= pDesc, product_model=pModel,product_brand=pBrand,product_purchase_rate=pPurchaseRate,product_sales_rate=pSalesRate,total_quantity=pQuantity
         WHERE ProductID = p_id;
 
@@ -68,7 +68,7 @@ create or replace package body update_product_pack as
     begin 
 
         select product_name,product_description,product_model,product_brand,product_purchase_rate,product_sales_rate,total_quantity
-        into pName,pDesc,pModel,pBrand,pPurchaseRate,pSalesRate,pQuantity from Product2 WHERE ProductID = p_id; 
+        into pName,pDesc,pModel,pBrand,pPurchaseRate,pSalesRate,pQuantity from Product2@site2 WHERE ProductID = p_id; 
 
         if p_name is not NULL then
             pName:=p_name;
@@ -93,7 +93,7 @@ create or replace package body update_product_pack as
         end if;
         
 
-        UPDATE Product2
+        UPDATE Product2@site2
         SET product_name = pName, product_description= pDesc, product_model=pModel,product_brand=pBrand,product_purchase_rate=pPurchaseRate,product_sales_rate=pSalesRate,total_quantity=pQuantity
         WHERE ProductID = p_id;
 
@@ -158,3 +158,5 @@ begin
 
 end;
 /
+
+commit;

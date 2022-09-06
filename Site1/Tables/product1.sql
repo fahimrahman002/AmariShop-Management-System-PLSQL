@@ -27,7 +27,8 @@ END;
 /
 
 CREATE OR REPLACE TRIGGER Product1Trigger_before_insert 
-BEFORE INSERT ON Product1 
+BEFORE INSERT 
+ON Product1 
 FOR EACH ROW
 BEGIN
   SELECT product1_seq.NEXTVAL

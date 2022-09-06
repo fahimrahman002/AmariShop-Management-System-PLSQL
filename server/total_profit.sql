@@ -25,7 +25,7 @@ create or replace package body total_profit_pack as
     procedure calculate_net_profit_b1(net_profit in out int) is 
     profitPerProduct int;
     begin 
-        for row in (select product_purchase_rate,product_sales_rate,total_quantity from Product1) loop
+        for row in (select product_purchase_rate,product_sales_rate,total_quantity from Product1@site1) loop
             profitPerProduct:=(row.product_sales_rate-row.product_purchase_rate)*row.total_quantity;
             net_profit:=net_profit+profitPerProduct;
         end loop;
@@ -35,7 +35,7 @@ create or replace package body total_profit_pack as
     procedure calculate_net_profit_b2(net_profit in out int) is 
     profitPerProduct int;
     begin 
-        for row in (select product_purchase_rate,product_sales_rate,total_quantity from Product2) loop
+        for row in (select product_purchase_rate,product_sales_rate,total_quantity from Product2@site2) loop
             profitPerProduct:=(row.product_sales_rate-row.product_purchase_rate)*row.total_quantity;
             net_profit:=net_profit+profitPerProduct;
         end loop;
@@ -44,7 +44,7 @@ create or replace package body total_profit_pack as
     procedure calculate_net_profit_all(net_profit in out int) is
     profitPerProduct int;
     begin 
-        for row in ((select product_purchase_rate,product_sales_rate,total_quantity from Product1) UNION (select product_purchase_rate,product_sales_rate,total_quantity from Product2)) loop
+        for row in ((select product_purchase_rate,product_sales_rate,total_quantity from Product1@site1) UNION (select product_purchase_rate,product_sales_rate,total_quantity from Product2@site2)) loop
             profitPerProduct:=(row.product_sales_rate-row.product_purchase_rate)*row.total_quantity;
             net_profit:=net_profit+profitPerProduct;
         end loop;

@@ -5,7 +5,7 @@ connect to system identified by "123456"
  using '(DESCRIPTION =
        (ADDRESS_LIST =
          (ADDRESS = (PROTOCOL = TCP)
-		 (HOST = 192.168.16.225)
+		 (HOST = 172.16.34.64)
 		 (PORT = 1521))
        )
        (CONNECT_DATA =
@@ -21,7 +21,7 @@ connect to system identified by "123456"
  using '(DESCRIPTION =
        (ADDRESS_LIST =
          (ADDRESS = (PROTOCOL = TCP)
-		 (HOST = 192.168.16.225)
+		 (HOST = 172.16.34.94)
 		 (PORT = 1521))
        )
        (CONNECT_DATA =
